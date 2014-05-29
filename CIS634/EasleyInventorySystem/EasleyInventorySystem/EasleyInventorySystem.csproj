@@ -97,10 +97,15 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Asset.cs" />
+    <Compile Include="Models\DemoDB.cs" />
+    <Compile Include="Models\InventoryDB.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +202,12 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\InventoryManager\Index.cshtml" />
+    <Content Include="Views\InventoryManager\Details.cshtml" />
+    <Content Include="Views\InventoryManager\Create.cshtml" />
+    <Content Include="Views\InventoryManager\Edit.cshtml" />
+    <Content Include="Views\InventoryManager\Delete.cshtml" />
+    <Content Include="Views\InventoryManager\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

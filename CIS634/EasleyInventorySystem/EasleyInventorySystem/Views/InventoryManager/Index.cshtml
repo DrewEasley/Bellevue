@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EasleyInventorySystem.Models.Asset>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h3>Search:</h3>
+@using (Html.BeginForm("Search", "InventoryManager", FormMethod.Get))
+{
+    <input type="text" name="q" />
+    <input type="submit" value="Search" />
+
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            AssetName
+        </th>
+        <th>
+            ImageUrl
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageUrl)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AssestID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AssestID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AssestID })
+        </td>
+    </tr>
+}
+
+</table>

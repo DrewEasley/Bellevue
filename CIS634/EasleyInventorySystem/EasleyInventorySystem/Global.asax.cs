@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+//using System.Collections.Generic; // Unused
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web;
+// using System.Web; //Unused
 using System.Web.Mvc;
 using System.Web.Routing;
+using EasleyInventorySystem.Models;
 
 namespace EasleyInventorySystem
 {
@@ -33,6 +34,9 @@ namespace EasleyInventorySystem
 
         protected void Application_Start()
         {
+            //Initialize our application with some fake data
+            Database.SetInitializer(new DemoDB());
+
             AreaRegistration.RegisterAllAreas();
 
             // Use LocalDB for Entity Framework by default

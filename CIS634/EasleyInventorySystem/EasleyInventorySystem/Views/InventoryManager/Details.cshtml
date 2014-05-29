@@ -1,0 +1,25 @@
+﻿@model EasleyInventorySystem.Models.Asset
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Asset</legend>
+
+    <div class="display-label">AssetName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AssetName)
+    </div>
+
+    <div class="display-label">ImageUrl</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ImageUrl)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AssestID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
