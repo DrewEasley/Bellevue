@@ -14,9 +14,10 @@
 
     @foreach (var a in Model)
     {
+        
         <tr>
             <td><img src="@a.ImageUrl" /></td>
-            <td>@a.AssetName</td>
+            <td>@a.AssetName.</td>
             <td>@a.Purchase.PurchaseDate</td>
             <td>@a.Purchase.PurchasePrice.ToString("C")</td>
             <td>@a.Purchase.PurchaseLocation</td>

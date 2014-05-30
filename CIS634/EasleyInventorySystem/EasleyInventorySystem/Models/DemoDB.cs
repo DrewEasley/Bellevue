@@ -25,7 +25,7 @@ namespace EasleyInventorySystem.Models
         }
 
 
-        private static Random rndgen = new Random();
+        private static readonly Random rndgen = new Random();
 
 
         private Asset CreateRandomizedAsset(int i)
