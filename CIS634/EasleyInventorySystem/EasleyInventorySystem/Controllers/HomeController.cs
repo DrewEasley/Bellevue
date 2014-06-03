@@ -35,11 +35,6 @@ namespace EasleyInventorySystem.Controllers
             
         }
 
-        public ActionResult ResetApp()
-        {
-            System.Web.HttpRuntime.UnloadAppDomain();
-            return View();
-        }
 
 
        

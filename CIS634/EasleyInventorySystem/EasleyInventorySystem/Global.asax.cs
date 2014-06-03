@@ -24,6 +24,18 @@ namespace EasleyInventorySystem
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "help",
+                url: "GettingStarted/{action}/{id}",
+                defaults: new
+                {
+                    controller = "Home",
+                    action = "About",
+                    id = UrlParameter.Optional
+                }
+    );
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
