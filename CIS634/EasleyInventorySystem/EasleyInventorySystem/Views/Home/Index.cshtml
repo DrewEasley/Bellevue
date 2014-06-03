@@ -1,8 +1,42 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inventory Management";
 }
 
 <h2>@ViewBag.Message</h2>
 <p>
-    To learn more about ASP.NET MVC visit <a href="/InventoryManager" title="Launch Inventory Management">http://Localhost:YourPort/InventoryManager</a>.
+    Please click  <a href="/InventoryManager" title="Launch Inventory Management">here</a> to launch the management system.
 </p>
+
+
+
+<div id="dialog-confirm" title="Create new demo database?">
+    <p><span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 20px 0;"></span>Would you like to erase the current database, and see the demo?</p>
+</div>
+
+<script>
+    $(function () {
+        var $dlgSelectDB = $("#dialog-confirm").dialog({
+            resizable: true,
+            width: 600,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            
+            modal: true,
+            buttons: {
+                "Demo Database": function () {
+                    window.location = "/Home/CreateDatabase"
+                    $(this).dialog("close");
+                },
+                "Continue": function () {
+                    window.location = "/InventoryManager"
+                    $(this).dialog("close");
+                }
+                
+
+
+            }
+        }).dialog("dlgSelectDB");
+    });
+</script>

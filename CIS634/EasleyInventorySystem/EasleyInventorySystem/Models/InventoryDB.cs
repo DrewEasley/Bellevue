@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+
 
 namespace EasleyInventorySystem.Models
 {
@@ -15,6 +17,21 @@ namespace EasleyInventorySystem.Models
 
         public InventoryDB() : base("name=InventoryDB")
         {
+        }
+
+        public int SafeSave()
+        {
+            try{
+                return base.SaveChanges();
+            }
+
+            catch (Exception ex)
+            {
+                //This will be replaced with a better error handler in the future.
+                //Perhaps using jQuery UI's "Dialog" Window
+                throw ex;
+            }
+            
         }
 
         public DbSet<Asset> Assets { get; set; }

@@ -9,10 +9,20 @@
 <fieldset>
     <legend>Asset</legend>
 
-    <div class="display-label">AssetName</div>
+
+    
+    <img src="@model.AssetName" height="100" width="100" />
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.AssetName)
+    </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.AssetName)
     </div>
+
+
+
+    
 
     <div class="display-label">ImageUrl</div>
     <div class="display-field">
@@ -20,6 +30,6 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.AssestID }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AssetID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -214,6 +214,7 @@
     <Content Include="Views\InventoryManager\Edit.cshtml" />
     <Content Include="Views\InventoryManager\Delete.cshtml" />
     <Content Include="Views\InventoryManager\Search.cshtml" />
+    <Content Include="Views\Home\CreateDatabase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

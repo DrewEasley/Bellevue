@@ -9,6 +9,7 @@ using EasleyInventorySystem.Models;
 
 namespace EasleyInventorySystem.Controllers
 { 
+    [Authorize] // Everybody past this point requires some level of authentication.
     public class InventoryManagerController : Controller
     {
         private InventoryDB db = new InventoryDB();
@@ -25,6 +26,7 @@ namespace EasleyInventorySystem.Controllers
         //
         // GET: /InventoryManager/Details/5
 
+        [Authorize(Roles="Administrator,AssetAdmin,AssetViewer")]
         public ViewResult Details(Guid id)
         {
             Asset asset = db.Assets.Find(id);
@@ -34,6 +36,7 @@ namespace EasleyInventorySystem.Controllers
         //
         // GET: /InventoryManager/Create
 
+        [Authorize(Roles="Administrator,AssetAdmin")]
         public ActionResult Create()
         {
             return View();
@@ -42,14 +45,17 @@ namespace EasleyInventorySystem.Controllers
         //
         // POST: /InventoryManager/Create
 
+
+        [Authorize(Roles = "Administrator,AssetAdmin")]
         [HttpPost]
         public ActionResult Create(Asset asset)
         {
             if (ModelState.IsValid)
             {
-                asset.AssestID = Guid.NewGuid();
+                asset.AssetID = Guid.NewGuid();
                 db.Assets.Add(asset);
-                db.SaveChanges();
+                //db.SaveChanges();
+                db.SafeSave();
                 return RedirectToAction("Index");  
             }
 
@@ -58,7 +64,9 @@ namespace EasleyInventorySystem.Controllers
         
         //
         // GET: /InventoryManager/Edit/5
- 
+
+
+        [Authorize(Roles = "Administrator,AssetAdmin")]
         public ActionResult Edit(Guid id)
         {
             Asset asset = db.Assets.Find(id);
@@ -69,6 +77,7 @@ namespace EasleyInventorySystem.Controllers
         // POST: /InventoryManager/Edit/5
 
         [HttpPost]
+        [Authorize(Roles = "Administrator,AssetAdmin")]
         public ActionResult Edit(Asset asset)
         {
             if (ModelState.IsValid)
@@ -81,6 +90,7 @@ namespace EasleyInventorySystem.Controllers
         }
 
         // GET: /InventoryManager/Search
+
         public ActionResult Search(string q)
         {
             var assets = db.Assets.Include("Purchase")
@@ -92,7 +102,8 @@ namespace EasleyInventorySystem.Controllers
 
         //
         // GET: /InventoryManager/Delete/5
- 
+
+        [Authorize(Roles = "Administrator,AssetAdmin")]
         public ActionResult Delete(Guid id)
         {
             Asset asset = db.Assets.Find(id);
@@ -103,6 +114,7 @@ namespace EasleyInventorySystem.Controllers
         // POST: /InventoryManager/Delete/5
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator,AssetAdmin")]
         public ActionResult DeleteConfirmed(Guid id)
         {            
             Asset asset = db.Assets.Find(id);

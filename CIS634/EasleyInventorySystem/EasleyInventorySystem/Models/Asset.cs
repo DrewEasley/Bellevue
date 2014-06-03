@@ -12,7 +12,7 @@ namespace EasleyInventorySystem.Models
         // Define our Asset table
 
         [Key]
-        public  virtual Guid AssestID { get; set; }  //GUID, Auto generated
+        public  virtual Guid AssetID { get; set; }  //GUID, Auto generated
 
         [Display(Name="Item Name")]
         public virtual String AssetName { get; set; } // Short Name: Downstairs Television
@@ -21,6 +21,8 @@ namespace EasleyInventorySystem.Models
         [Display(Name="Picture")]
         public virtual String ImageUrl { get; set; } // URL to a picture of this asset
 
+
+       
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Purchase == null)

@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
-
+using System.Web.Security;
 
 namespace EasleyInventorySystem.Models
 {
@@ -19,11 +19,39 @@ namespace EasleyInventorySystem.Models
             {
                 context.Assets.Add(CreateRandomizedAsset(i));
             }
-            
+
+            CreateUsersAndRoles();
 
             base.Seed(context);
         }
 
+
+        private void CreateUsersAndRoles()
+        {
+            
+            
+            //Create base roles
+            Roles.CreateRole("Administrator");
+            Roles.CreateRole("AssetAdmin");
+            Roles.CreateRole("AssetViewer");
+
+            //Create three test users
+            MembershipUser userAdmin = Membership.CreateUser("Administrator", "password");
+            userAdmin.IsApproved = true;
+
+
+            Membership.CreateUser("HomeOwner", "password");
+            Membership.CreateUser("Friend", "password");
+
+
+            //Add test users to test roles
+            Roles.AddUsersToRole(new string[]{"Administrator"}, "Administrator");
+            Roles.AddUsersToRole(new string[] { "Administrator", "HomeOwner" }, "AssetAdmin");
+            Roles.AddUsersToRole(new string[] { "Administrator", "HomeOwner", "Friend" }, "AssetViewer");
+
+            
+            
+        }
 
         private static readonly Random rndgen = new Random();
 
@@ -31,12 +59,11 @@ namespace EasleyInventorySystem.Models
         private Asset CreateRandomizedAsset(int i)
         {
             Asset mAsset = new Asset();
-            mAsset.AssestID = Guid.NewGuid(); //Auto generated key value
+            mAsset.AssetID = Guid.NewGuid(); //Auto generated key value
 
-            //Thanks to the Adjective - Noun dataset
-            //http://ilexir.co.uk/applications/adjective%E2%80%93noun-dataset/
+            
             mAsset.AssetName = "Asset #" + i.ToString(); // Name in form of Asset #105
-            mAsset.ImageUrl = "images/FakeAsset" + i.ToString() + ".png"; //URL in form of images/FakeAsset1.png
+            mAsset.ImageUrl = "http://lorempixel.com/150/150/?A" + i.ToString() ; // URL to our image creation service! Using the ?A parameter, we can keep the browswers cache happy.
             mAsset.Purchase = CreateRandomizedPurchase();
             return mAsset;
         }

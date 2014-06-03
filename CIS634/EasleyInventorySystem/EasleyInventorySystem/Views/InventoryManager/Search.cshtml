@@ -16,14 +16,28 @@
     {
         
         <tr>
-            <td><img src="@a.ImageUrl" /></td>
-            <td>@a.AssetName.</td>
-            <td>@a.Purchase.PurchaseDate</td>
+            <!-- Fake Images provided by http://lorempixel.com-->
+            <td>
+                <div class="assetimage">
+                    <img src="@a.ImageUrl" height="100" width="100" />
+                </div>
+            </td>
+            <td>@Html.ActionLink(@a.AssetName, "Details", new { id = a.AssetID })</td>
+            <td>@a.Purchase.PurchaseDate.ToString("D")</td>
             <td>@a.Purchase.PurchasePrice.ToString("C")</td>
             <td>@a.Purchase.PurchaseLocation</td>
         </tr>
     }
     </table>
+    
+    <script>
+        $(function () {
+            $(".assetimage img").mouseover(function () {
+                $(this).animate({ height: '+=25', width: '+=25' })
+                       .animate({ height: '-=25', width: '-=25' });
+            });
+        });
+    </script>
 }
 
 <h2>Search</h2>

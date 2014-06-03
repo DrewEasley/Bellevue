@@ -13,7 +13,6 @@ namespace EasleyInventorySystem.Models
         public virtual Guid TransactionID { get; set; } // GUID, Auto generated
 
         [Display(Name="Purchase Date")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]  // Needed to support jQuery DateTime2 format
         public virtual DateTime PurchaseDate { get; set; } // Date of purchase
 
         [Display(Name = "Place of Purchase")]

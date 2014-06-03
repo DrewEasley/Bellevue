@@ -34,8 +34,9 @@ namespace EasleyInventorySystem
 
         protected void Application_Start()
         {
+            //Moved to DemoDatabaseController/Create
             //Initialize our application with some fake data
-            Database.SetInitializer(new DemoDB());
+            Database.SetInitializer(new DropCreateDatabaseAlways<InventoryDB>());  
 
             AreaRegistration.RegisterAllAreas();
 
@@ -45,5 +46,7 @@ namespace EasleyInventorySystem
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
+
+
     }
 }

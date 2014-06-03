@@ -54,12 +54,14 @@
                         {
                             changeMonth: true,
                             changeYear: true,
-                            showButtonPanel: true
+                            showButtonPanel: true,
+                            numberOfMonths: 3,
+                            dateFormat: "D, d MM, yy"
                         }
                         );
                 });
             </script>
-            <input type="text" name="model.Purchase.PurchaseDate" id="datepicker"  />
+            <input type="text" name="Purchase.PurchaseDate" id="datepicker"  />
 
             <!-- @Html.EditorFor(model => model.Purchase.PurchaseDate) -->
             @Html.ValidationMessageFor(model => model.Purchase.PurchaseDate)
