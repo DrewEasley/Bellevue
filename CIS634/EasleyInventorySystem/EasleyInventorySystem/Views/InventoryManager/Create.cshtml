@@ -9,6 +9,7 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
+
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
@@ -37,11 +38,15 @@
             @Html.LabelFor(model => model.Purchase.PurchaseLocation)
         </div>
         <div class="editor-field">
+            <input type="text" name="Purchase.PurchaseLocation" data-autocomplete-source="@Url.Action("LocationSearch", "InventoryManager")" />
 
-            @Html.EditorFor(model => model.Purchase.PurchaseLocation)
+
+
+            <!-- Html.EditorFor(model => model.Purchase.PurchaseLocation) -->
             @Html.ValidationMessageFor(model => model.Purchase.PurchaseLocation)
         </div>
 
+        
         <!-- Purchase.PurchaseDate-->
         <div class="editor-label">
             @Html.LabelFor(model => model.Purchase.PurchaseDate)
@@ -56,6 +61,7 @@
                             changeYear: true,
                             showButtonPanel: true,
                             numberOfMonths: 3,
+                            showCurrentAtPos: 2,
                             dateFormat: "D, d MM, yy"
                         }
                         );
@@ -91,3 +97,12 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<!-- Connection AutoCompletes-->
+<script>
+    $("input[data-autocomplete-source]").each(function () {
+        var target = $(this);
+        target.autocomplete({ source: target.attr("data-autocomplete-source") });
+    })
+</script>
+

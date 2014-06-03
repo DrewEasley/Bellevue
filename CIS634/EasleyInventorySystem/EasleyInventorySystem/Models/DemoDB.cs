@@ -13,14 +13,14 @@ namespace EasleyInventorySystem.Models
         protected override void Seed(InventoryDB context)
         {
             //Define how many random assets you want to create
-            int numPurchasesToCreate = 50;
+            int numPurchasesToCreate = 10;
 
             for (int i = 1; i <= numPurchasesToCreate; i++)
             {
                 context.Assets.Add(CreateRandomizedAsset(i));
             }
 
-            CreateUsersAndRoles();
+            //CreateUsersAndRoles();
 
             base.Seed(context);
         }
@@ -32,8 +32,7 @@ namespace EasleyInventorySystem.Models
             
             //Create base roles
             Roles.CreateRole("Administrator");
-            Roles.CreateRole("AssetAdmin");
-            Roles.CreateRole("AssetViewer");
+            
 
             //Create three test users
             MembershipUser userAdmin = Membership.CreateUser("Administrator", "password");
@@ -63,7 +62,7 @@ namespace EasleyInventorySystem.Models
 
             
             mAsset.AssetName = "Asset #" + i.ToString(); // Name in form of Asset #105
-            mAsset.ImageUrl = "http://lorempixel.com/150/150/?A" + i.ToString() ; // URL to our image creation service! Using the ?A parameter, we can keep the browswers cache happy.
+            mAsset.ImageUrl = "http://lorempixel.com/300/300/technics/" + i.ToString() ; // URL to our image creation service! Using the ?A parameter, we can keep the browswers cache happy.
             mAsset.Purchase = CreateRandomizedPurchase();
             return mAsset;
         }

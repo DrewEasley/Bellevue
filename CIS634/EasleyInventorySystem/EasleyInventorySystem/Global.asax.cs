@@ -36,7 +36,7 @@ namespace EasleyInventorySystem
         {
             //Moved to DemoDatabaseController/Create
             //Initialize our application with some fake data
-            Database.SetInitializer(new DropCreateDatabaseAlways<InventoryDB>());  
+            //Database.SetInitializer(new DropCreateDatabaseAlways<InventoryDB>());  
 
             AreaRegistration.RegisterAllAreas();
 

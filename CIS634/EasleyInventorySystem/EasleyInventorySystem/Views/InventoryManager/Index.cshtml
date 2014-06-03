@@ -18,31 +18,29 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            AssetName
-        </th>
-        <th>
-            ImageUrl
-        </th>
-        <th></th>
-    </tr>
+                      <table>
+                          <tr>
+                              <th>Picture</th>
+                              <th>Asset Name</th>
+                              <th>Purchase Date</th>
+                              <th>Purchase Price</th>
+                              <th>Purchase Location</th>
+                          </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageUrl)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AssetID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AssetID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AssetID })
-        </td>
-    </tr>
-}
+                          @foreach (var a in Model)
+                          {
 
+                              <tr>
+                                  <!-- Fake Images provided by http://lorempixel.com-->
+                                  <td>
+                                      <div class="assetimage">
+                                          <img src="@a.ImageUrl" height="100" width="100" />
+                                      </div>
+                                  </td>
+                                  <td>@Html.ActionLink(@a.AssetName, "Details", new { id = a.AssetID })</td>
+                                  <td>@a.Purchase.PurchaseDate.ToString("D")</td>
+                                  <td>@a.Purchase.PurchasePrice.ToString("C")</td>
+                                  <td>@a.Purchase.PurchaseLocation</td>
+                              </tr>
+                          }
 </table>

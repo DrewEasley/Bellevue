@@ -3,14 +3,34 @@
 }
 
 <h2>@ViewBag.Message</h2>
+
+<p>
+    Try logging in with the following accounts:
+</p>
+
+<p>
+    The HomeOwner account has full privleges.  It can Create, Edit, and Delete records.<br />
+    <b>Username:</b> HomeOwner<br />
+    <b>Password:</b> password<br />
+
+</p>
+
+<p>
+    The "Friend" account has read-only privleges.  It cannot create or edit assets.<br />
+    <b>Username:</b> Friend<br />
+    <b>Password:</b> password<br />
+
+
+</p>
+
 <p>
     Please click  <a href="/InventoryManager" title="Launch Inventory Management">here</a> to launch the management system.
 </p>
 
 
 
-<div id="dialog-confirm" title="Create new demo database?">
-    <p><span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 20px 0;"></span>Would you like to erase the current database, and see the demo?</p>
+<div id="dialog-confirm" title="Welcome!">
+    <p><span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 20px 0;"></span>To fully explore this product, please use Username "HomeOwner" and password "password"</p>
 </div>
 
 <script>
@@ -25,12 +45,7 @@
             
             modal: true,
             buttons: {
-                "Demo Database": function () {
-                    window.location = "/Home/CreateDatabase"
-                    $(this).dialog("close");
-                },
-                "Continue": function () {
-                    window.location = "/InventoryManager"
+                "OK": function () {
                     $(this).dialog("close");
                 }
                 

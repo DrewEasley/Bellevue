@@ -1,5 +1,5 @@
 ﻿using System;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data;
 //using System.Data.Entity;
 using System.Linq;
@@ -53,6 +53,7 @@ namespace EasleyInventorySystem.Controllers
             if (ModelState.IsValid)
             {
                 asset.AssetID = Guid.NewGuid();
+                asset.Purchase.TransactionID = Guid.NewGuid();
                 db.Assets.Add(asset);
                 //db.SaveChanges();
                 db.SafeSave();
@@ -64,6 +65,17 @@ namespace EasleyInventorySystem.Controllers
         
         //
         // GET: /InventoryManager/Edit/5
+
+        public ActionResult LocationSearch(string term)
+        {
+            var locations = GetLocations(term).Select(a => new { value = a.PurchaseLocation }).Distinct();
+            return Json(locations, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<Purchase> GetLocations(string searchTerm)
+        {
+            return db.Purchases.Where(a => a.PurchaseLocation.Contains(searchTerm)).ToList();
+        }
 
 
         [Authorize(Roles = "Administrator,AssetAdmin")]

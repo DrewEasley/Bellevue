@@ -1,35 +1,46 @@
 ﻿@model EasleyInventorySystem.Models.Asset
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Details</h2>
+<h2>Edit</h2>
 
-<fieldset>
-    <legend>Asset</legend>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <table>
+            <tr>
+                <th>Picture</th>
+                <th>Asset Name</th>
+                <th>Purchase Date</th>
+                <th>Purchase Price</th>
+                <th>Purchase Location</th>
+            </tr>
 
 
-    
-    <img src="@model.AssetName" height="100" width="100" />
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.AssetName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AssetName)
-    </div>
+                <tr>
+                    <!-- Fake Images provided by http://lorempixel.com-->
+                    <td>
+                        <div class="assetimage">
+                            <img src="@model.ImageUrl" height="100" width="100" />
+                        </div>
+                    </td>
+                    <td>@Html.ActionLink(@model.AssetName, "Details", new { id = a.AssetID })</td>
+                    <td>@a.Purchase.PurchaseDate.ToString("D")</td>
+                    <td>@a.Purchase.PurchasePrice.ToString("C")</td>
+                    <td>@a.Purchase.PurchaseLocation</td>
+                </tr>
 
+        </table>
+    </fieldset>
+}
 
-
-    
-
-    <div class="display-label">ImageUrl</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageUrl)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.AssetID }) |
+<div>
     @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

@@ -14,6 +14,10 @@ namespace EasleyInventorySystem.Controllers
 
         public ActionResult Index()
         {
+
+            
+
+
             ViewBag.Message = "Welcome to the Easley Inventory System!";
 
             return View();
