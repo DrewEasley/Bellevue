@@ -1,10 +1,11 @@
 ﻿@model EasleyInventorySystem.Models.Asset
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Details about";
 }
 
-<h2>Edit</h2>
+<font size="5">@ViewBag.Title @Model.AssetName</font><br/>
+<i>from @Model.Purchase.PurchaseLocation</i><br/>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
@@ -13,31 +14,31 @@
 {
     @Html.ValidationSummary(true)
     <fieldset>
+        
+                    <!-- Fake Images provided by http://lorempixel.com-->
         <table>
             <tr>
-                <th>Picture</th>
-                <th>Asset Name</th>
-                <th>Purchase Date</th>
-                <th>Purchase Price</th>
-                <th>Purchase Location</th>
+                <td>@Html.Label("Asset Image")</td>
+                <td><img src="@Model.ImageUrl" height="100" width="100" /></td>
             </tr>
 
-
-
-                <tr>
-                    <!-- Fake Images provided by http://lorempixel.com-->
-                    <td>
-                        <div class="assetimage">
-                            <img src="@model.ImageUrl" height="100" width="100" />
-                        </div>
-                    </td>
-                    <td>@Html.ActionLink(@model.AssetName, "Details", new { id = a.AssetID })</td>
-                    <td>@a.Purchase.PurchaseDate.ToString("D")</td>
-                    <td>@a.Purchase.PurchasePrice.ToString("C")</td>
-                    <td>@a.Purchase.PurchaseLocation</td>
-                </tr>
-
+            <tr>
+                <td>Purchase Information</td>
+                <td>
+                    
+                    @Html.ActionLink(@Model.Purchase.PurchaseLocation, "Search", "InventoryManager", new { q= Url.Encode(@Model.Purchase.PurchaseLocation) }, null)<br />
+                    @Model.Purchase.PurchaseDate.ToString("D")<br />
+                    @Model.Purchase.PurchasePrice.ToString("C")
+                </td>
+            </tr>
         </table>
+                    
+
+                        
+                    
+                  
+                    
+
     </fieldset>
 }
 

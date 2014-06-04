@@ -20,6 +20,7 @@
 </p>
                       <table>
                           <tr>
+                              <th></th>
                               <th>Picture</th>
                               <th>Asset Name</th>
                               <th>Purchase Date</th>
@@ -29,18 +30,22 @@
 
                           @foreach (var a in Model)
                           {
-
+                              
                               <tr>
+                                  <td>
+                                      @Html.ActionLink("Edit Record", "Edit", new { Id = @a.AssetID })<br /><br/>
+                                  @Html.ActionLink("View Details", "Details", new { Id = @a.AssetID})
+                                  </td>
                                   <!-- Fake Images provided by http://lorempixel.com-->
                                   <td>
                                       <div class="assetimage">
                                           <img src="@a.ImageUrl" height="100" width="100" />
                                       </div>
                                   </td>
-                                  <td>@Html.ActionLink(@a.AssetName, "Details", new { id = a.AssetID })</td>
+                                  <td>@a.AssetName</td>
                                   <td>@a.Purchase.PurchaseDate.ToString("D")</td>
                                   <td>@a.Purchase.PurchasePrice.ToString("C")</td>
-                                  <td>@a.Purchase.PurchaseLocation</td>
+                                  <td>@Html.ActionLink(@a.Purchase.PurchaseLocation, "Search", "InventoryManager", new { q = Url.Encode(@a.Purchase.PurchaseLocation) }, null)</td>
                               </tr>
                           }
 </table>

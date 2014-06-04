@@ -32,6 +32,30 @@
             @Html.ValidationMessageFor(model => model.ImageUrl)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Purchase.PurchaseLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Purchase.PurchaseLocation)
+            @Html.ValidationMessageFor(model => model.Purchase.PurchaseLocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Purchase.PurchasePrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Purchase.PurchasePrice)
+            @Html.ValidationMessageFor(model => model.Purchase.PurchasePrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Purchase.PurchaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Purchase.PurchaseDate)
+            @Html.ValidationMessageFor(model => model.Purchase.PurchaseDate)
+        </div>
+
         <p>
             <input type="submit" value="Save" />
         </p>

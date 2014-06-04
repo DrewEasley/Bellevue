@@ -5,6 +5,7 @@
     <h2>Results</h2>
     <table>
         <tr>
+            <th></th>
             <th>Picture</th>
             <th>Asset Name</th>
             <th>Purchase Date</th>
@@ -16,6 +17,10 @@
     {
         
         <tr>
+            <td>
+                @Html.ActionLink("Edit Record", "Edit", new { Id = @a.AssetID })<br /><br />
+                @Html.ActionLink("View Details", "Details", new { Id = @a.AssetID })
+            </td>
             <!-- Fake Images provided by http://lorempixel.com-->
             <td>
                 <div class="assetimage">

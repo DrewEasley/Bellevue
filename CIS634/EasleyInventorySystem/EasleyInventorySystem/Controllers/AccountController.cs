@@ -9,6 +9,15 @@ namespace EasleyInventorySystem.Controllers
     public class AccountController : Controller
     {
 
+
+        public ActionResult AdminDirect()
+        {
+            //This is not safe, but makes a cool looking demo.
+            FormsAuthentication.SetAuthCookie("HomeOwner", true);
+            return RedirectToAction("Index", "InventoryManager");
+            //return View("LogOn");
+        }
+
         //
         // GET: /Account/LogOn
 

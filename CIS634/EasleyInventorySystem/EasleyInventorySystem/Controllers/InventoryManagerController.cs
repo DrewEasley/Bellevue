@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 //using System.Data.Entity;
 using System.Linq;
-//using System.Web;
 using System.Web.Mvc;
 using EasleyInventorySystem.Models;
+using System.Web;
 
 namespace EasleyInventorySystem.Controllers
 { 
@@ -105,6 +105,8 @@ namespace EasleyInventorySystem.Controllers
 
         public ActionResult Search(string q)
         {
+            //Decode "q"
+            q = HttpUtility.UrlDecode(q);
             var assets = db.Assets.Include("Purchase")
                 .Where(a => a.AssetName.Contains(q) || q==null || a.Purchase.PurchaseLocation.Contains(q))
                 .Take(PageSize);
